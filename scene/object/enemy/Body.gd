@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var player = get_node("../../../Player/Body")
+onready var player = get_node("../../Player/Body")
 
 const MovementSpeed = 120
 const DetectionRange = 500
@@ -11,6 +11,8 @@ func _physics_process(delta):
 	if targetVector.length() < DetectionRange:
 		move_and_slide(targetVector.normalized() * MovementSpeed)
 
-
 func _on_DamageArea_body_entered(body):
 	player.Damage()
+
+func getGlobalPosition():
+	return to_global(Vector2())
