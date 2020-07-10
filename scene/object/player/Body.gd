@@ -12,4 +12,7 @@ func _physics_process(delta):
 		inputVector.y -= 1
 	if Input.is_action_pressed("move_down"):
 		inputVector.y += 1
-	move_and_slide(inputVector * MovementSpeed)
+	move_and_slide(inputVector.normalized() * MovementSpeed)
+
+func getGlobalPosition():
+	return to_global(Vector2())

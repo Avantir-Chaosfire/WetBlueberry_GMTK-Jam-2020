@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scene/object/wall/Wall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scene/object/player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/object/enemy/Enemy.tscn" type="PackedScene" id=3]
 
 [node name="Level1" type="Node2D"]
 
@@ -10,14 +11,14 @@
 [node name="Walls" type="Node2D" parent="."]
 
 [node name="Wall1" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 150, 150 )
-rotation = 0.785398
-scale = Vector2( 1, 25 )
+position = Vector2( 300, 300 )
+rotation = 1.5708
+scale = Vector2( 1, 35 )
 
 [node name="Wall2" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 150, -150 )
-rotation = -0.785398
-scale = Vector2( 1, 25 )
+position = Vector2( 300, -300 )
+rotation = 1.5708
+scale = Vector2( 1, 35 )
 
 [node name="Wall3" parent="Walls" instance=ExtResource( 1 )]
 position = Vector2( -150, 150 )
@@ -28,3 +29,24 @@ scale = Vector2( 1, 25 )
 position = Vector2( -150, -150 )
 rotation = 0.785398
 scale = Vector2( 1, 25 )
+
+[node name="Wall5" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 750, 150 )
+rotation = 0.785398
+scale = Vector2( 1, 25 )
+
+[node name="Wall6" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 750, -150 )
+rotation = -0.785398
+scale = Vector2( 1, 25 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy1" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 641.413, -90.9912 )
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 820.412, -25.3582 )
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 528.047, 243.141 )
