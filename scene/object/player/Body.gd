@@ -1,6 +1,11 @@
 extends KinematicBody2D
 
+onready var animationPlayer = get_node("AnimationPlayer")
+
 const MovementSpeed = 230
+
+func _ready():
+	animationPlayer.play("Idle")
 
 func _physics_process(delta):
 	var inputVector = Vector2()
