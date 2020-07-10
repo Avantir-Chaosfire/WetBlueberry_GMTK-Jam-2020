@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/object/wall/Wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scene/object/player/Player.tscn" type="PackedScene" id=2]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall1" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 150, 150 )
+rotation = 0.785398
+scale = Vector2( 1, 25 )
+
+[node name="Wall2" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 150, -150 )
+rotation = -0.785398
+scale = Vector2( 1, 25 )
+
+[node name="Wall3" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( -150, 150 )
+rotation = -0.785398
+scale = Vector2( 1, 25 )
+
+[node name="Wall4" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( -150, -150 )
+rotation = 0.785398
+scale = Vector2( 1, 25 )
