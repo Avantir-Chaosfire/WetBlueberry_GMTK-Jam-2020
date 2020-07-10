@@ -1,15 +1,21 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://sprite/idle/3.png" type="Texture" id=1]
 [ext_resource path="res://scene/object/player/Body.gd" type="Script" id=2]
 [ext_resource path="res://sprite/idle/2.png" type="Texture" id=3]
 [ext_resource path="res://sprite/idle/1.png" type="Texture" id=4]
+[ext_resource path="res://sprite/walk/walk1.png" type="Texture" id=5]
+[ext_resource path="res://sprite/walk/walk2.png" type="Texture" id=6]
+[ext_resource path="res://sprite/walk/walk4.png" type="Texture" id=7]
+[ext_resource path="res://sprite/walk/walk5.png" type="Texture" id=8]
+[ext_resource path="res://sprite/walk/walk6.png" type="Texture" id=9]
+[ext_resource path="res://sprite/walk/walk3.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -33,21 +39,43 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "Walking"
+length = 0.9
+loop = true
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 3, 4, 5, 6, 7 ]
+}
+
 [node name="Player" type="Node2D"]
 
 [node name="Body" type="KinematicBody2D" parent="."]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="Body"]
-scale = Vector2( 3, 3 )
+scale = Vector2( 1.5, 1.5 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera2D" parent="Body"]
 current = true
 
 [node name="Sprite" type="AnimatedSprite" parent="Body"]
-position = Vector2( 0, -70 )
+position = Vector2( 0, -35 )
+scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body"]
 anims/Idle = SubResource( 3 )
+anims/Walking = SubResource( 4 )
