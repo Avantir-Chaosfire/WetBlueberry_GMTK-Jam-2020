@@ -36,3 +36,6 @@ func _physics_process(delta):
 
 func getGlobalPosition():
 	return to_global(Vector2())
+	
+func Damage():
+	print("hit")

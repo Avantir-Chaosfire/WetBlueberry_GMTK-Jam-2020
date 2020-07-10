@@ -10,3 +10,7 @@ func _physics_process(delta):
 	var targetVector = targetPosition - position
 	if targetVector.length() < DetectionRange:
 		move_and_slide(targetVector.normalized() * MovementSpeed)
+
+
+func _on_DamageArea_body_entered(body):
+	player.Damage()
