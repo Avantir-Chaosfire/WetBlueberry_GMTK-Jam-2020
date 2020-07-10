@@ -16,7 +16,20 @@ texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 10000, 10000 )
 
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Enemy1" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 641.413, -90.9912 )
+
+[node name="Enemy2" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 820.412, -25.3582 )
+
+[node name="Enemy3" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 528.047, 243.141 )
+
 [node name="Walls" type="Node2D" parent="."]
+z_index = -5
+z_as_relative = false
 
 [node name="Wall1" parent="Walls" instance=ExtResource( 1 )]
 position = Vector2( 300, 300 )
@@ -47,14 +60,3 @@ scale = Vector2( 1, 25 )
 position = Vector2( 750, -150 )
 rotation = -0.785398
 scale = Vector2( 1, 25 )
-
-[node name="Enemies" type="Node2D" parent="."]
-
-[node name="Enemy1" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 641.413, -90.9912 )
-
-[node name="Enemy2" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 820.412, -25.3582 )
-
-[node name="Enemy3" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 528.047, 243.141 )
