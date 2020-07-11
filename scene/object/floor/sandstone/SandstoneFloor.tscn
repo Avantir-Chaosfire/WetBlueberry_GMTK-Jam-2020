@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/object/wall/Sprite.gd" type="Script" id=1]
+[ext_resource path="res://sprite/floor/1.png" type="Texture" id=2]
+
+[node name="SandstoneFloor" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 100, 100 )
+script = ExtResource( 1 )
