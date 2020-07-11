@@ -46,7 +46,12 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("attack") or attackQueued:
 			attackQueued = false
 			if attackDelayTimer.is_stopped():
-				animationPlayer.play("Punch")
+				if Input.is_action_pressed("move_up") and not Input.is_action_pressed("move_down"):
+					animationPlayer.play("Punch Up")
+				elif not Input.is_action_pressed("move_up") and Input.is_action_pressed("move_down"):
+					animationPlayer.play("Punch Down")
+				else:
+					animationPlayer.play("Punch")
 				isAttacking = true
 				isMoving = false
 			else:
