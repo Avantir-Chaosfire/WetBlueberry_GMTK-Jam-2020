@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/punchdownward1.png-1e54729d5407395a6aa6c776856e00e0.stex"
+path="res://.import/mourning2.png-1bb6428feb2e42b1f33100d772b2f1ae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/punch_downard/punchdownward1.png"
-dest_files=[ "res://.import/punchdownward1.png-1e54729d5407395a6aa6c776856e00e0.stex" ]
+source_file="res://sprite/mourning/mourning2.png"
+dest_files=[ "res://.import/mourning2.png-1bb6428feb2e42b1f33100d772b2f1ae.stex" ]
 
 [params]
 
