@@ -58,10 +58,9 @@ func advanceLevel():
 func restartLevel():
 	if not gameComplete:
 		victorious = false
-		remove_child(currentLevel)
-		currentLevel.queue_free()
+		call_deferred("unloadNode", currentLevel)
 		currentLevel = levelClasses[currentLevelIndex].instance()
-		add_child(currentLevel)
+		call_deferred("loadNode", currentLevel)
 		
 func restartGame():
 	victorious = false
@@ -73,6 +72,13 @@ func completeGame():
 	victorious = true
 	gameComplete = true
 	#gui.add_child(finalVictoryMenuClass.instance())
+		
+func unloadNode(node):
+	remove_child(node)
+	node.queue_free()
+	
+func loadNode(node):
+	add_child(node)
 	
 func renderSortEntities(entities):
 	entities.sort_custom(self, "depthComparison")

@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-func Hit(body, normal):
+func Hit(_body, _normal):
 	pass
 
 func getGlobalPosition():
