@@ -26,11 +26,13 @@ func _ready():
 	startGame()
 
 func _physics_process(_delta):
-	if inGame and not gameComplete:
-		if not victorious:
+	if inGame:
+		if not gameComplete and not victorious:
 			var satisfiesVictoryCondition = false
 			if satisfiesVictoryCondition:
 				victory()
+		var entitiesToRender = currentLevel.GetEntitiesToRender()
+		renderSortEntities(entitiesToRender)
 		
 func victory():
 	victorious = true
@@ -72,5 +74,16 @@ func completeGame():
 	gameComplete = true
 	#gui.add_child(finalVictoryMenuClass.instance())
 	
-func getCharacter():
-	return currentLevel.get_node("Character")
+func renderSortEntities(entities):
+	entities.sort_custom(self, "depthComparison")
+	var z = 0
+	for entity in entities:
+		entity.z_index = z
+		entity.z_as_relative = false
+		z += 1
+
+func depthComparison(a, b):
+	return a.getGlobalPosition().y < b.getGlobalPosition().y
+	
+func FailLevel():
+	restartLevel()

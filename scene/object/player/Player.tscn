@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://sprite/idle/3.png" type="Texture" id=1]
 [ext_resource path="res://scene/object/player/Body.gd" type="Script" id=2]
@@ -10,16 +10,22 @@
 [ext_resource path="res://sprite/walk/walk5.png" type="Texture" id=8]
 [ext_resource path="res://sprite/walk/walk6.png" type="Texture" id=9]
 [ext_resource path="res://sprite/walk/walk3.png" type="Texture" id=10]
+[ext_resource path="res://sprite/punch_sideway/punch3.png" type="Texture" id=11]
+[ext_resource path="res://sprite/punch_sideway/punch2.png" type="Texture" id=12]
+[ext_resource path="res://sprite/punch_sideway/punch1.png" type="Texture" id=13]
+[ext_resource path="res://scene/object/player/Camera.gd" type="Script" id=14]
 
 [sub_resource type="CircleShape2D" id=1]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="CircleShape2D" id=6]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
@@ -37,6 +43,95 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:isAttacking")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:completeAttack")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/DamageArea/Hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Punch"
+length = 0.45
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:isAttacking")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:completeAttack")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/DamageArea/Hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -56,6 +151,44 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 8, 3, 4, 5, 6, 7 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:isAttacking")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:completeAttack")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/DamageArea/Hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="CircleShape2D" id=7]
 
 [node name="Player" type="Node2D"]
 
@@ -63,6 +196,7 @@ tracks/0/keys = {
 collision_layer = 2
 collision_mask = 3
 script = ExtResource( 2 )
+isAttacking = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="Body"]
 scale = Vector2( 1.5, 1.5 )
@@ -70,12 +204,45 @@ shape = SubResource( 1 )
 
 [node name="Camera" type="Camera2D" parent="Body"]
 current = true
+script = ExtResource( 14 )
+
+[node name="ShakeTimer" type="Timer" parent="Body/Camera"]
+wait_time = 0.15
+one_shot = true
 
 [node name="Sprite" type="AnimatedSprite" parent="Body"]
 position = Vector2( 0, -35 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
+frame = 10
+
+[node name="DamageArea" type="Area2D" parent="Body/Sprite"]
+position = Vector2( 80, 70 )
+scale = Vector2( 6, 6 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="Hitbox" type="CollisionShape2D" parent="Body/Sprite/DamageArea"]
+shape = SubResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body"]
 anims/Idle = SubResource( 3 )
+anims/Punch = SubResource( 5 )
 anims/Walking = SubResource( 4 )
+
+[node name="MourningTimer" type="Timer" parent="Body"]
+wait_time = 1.4
+one_shot = true
+
+[node name="AttackDelayTimer" type="Timer" parent="Body"]
+wait_time = 0.2
+one_shot = true
+
+[node name="NearbyEnemyDetector" type="Area2D" parent="Body"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Hitbox" type="CollisionShape2D" parent="Body/NearbyEnemyDetector"]
+scale = Vector2( 180, 180 )
+shape = SubResource( 7 )
+[connection signal="body_entered" from="Body/Sprite/DamageArea" to="Body" method="_on_DamageArea_body_entered"]
