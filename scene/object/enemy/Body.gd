@@ -83,6 +83,7 @@ func Damage():
 	print("3")
 	world.CheckVictory()
 	print("Complete")
+	sprite.scale.x = 0.5
 
 func Hit(_body, _normal):
 	pass

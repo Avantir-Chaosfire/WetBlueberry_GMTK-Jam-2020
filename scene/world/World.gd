@@ -1,5 +1,6 @@
 extends Node2D
 
+var titleMenuClass = preload("res://scene/menu/title/Title.tscn")
 var victoryMenuClass = preload("res://scene/menu/victory/Victory.tscn")
 var finalVictoryMenuClass = preload("res://scene/menu/final_victory/FinalVictory.tscn")
 
@@ -20,6 +21,7 @@ var inGame = false
 var entitiesToRender = []
 	
 func startGame():
+	gui.add_child(titleMenuClass.instance())
 	inGame = true
 	currentLevel = levelClasses[currentLevelIndex].instance()
 	add_child(currentLevel)
