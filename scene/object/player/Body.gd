@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 onready var world = get_node("../../../..")
 onready var animationPlayer = get_node("PlayerAnimationPlayer")
-onready var sprite = get_node("PlayerSprite")
+onready var helmetAnimationPlayer = get_node("HelmetAnimationPlayer")
+onready var model = get_node("PlayerModel")
 onready var attackDelayTimer = get_node("AttackDelayTimer")
 onready var cameraShakeTimer = get_node("Camera/ShakeTimer")
 onready var nearbyEnemyDetector = get_node("NearbyEnemyDetector")
@@ -16,10 +17,13 @@ const MourningKills = 5
 export var isAttacking = false
 export var mourningState = 0 setget SetMourningState
 export var completeAttack = false setget CompleteAttack
+export var completeHelmetAttack = false setget CompleteHelmetAttack
+export var isHelmetActive = false setget SetHelmetActive
 
 var velocity = Vector2()
 var isMoving = false
 var playIdleAnimation = false
+var playHelmetIdleAnimation = false
 var playMourningAnimation = false
 var killCount = 0
 var isMourning = false
@@ -27,8 +31,12 @@ var attackQueued = false
 
 func _ready():
 	animationPlayer.play("Idle")
+	helmetAnimationPlayer.play("Inactive")
 
 func _physics_process(delta):
+	if playHelmetIdleAnimation:
+		playHelmetIdleAnimation = false
+		helmetAnimationPlayer.play("Idle")
 	if playIdleAnimation:
 		playIdleAnimation = false
 		animationPlayer.play("Idle")
@@ -46,40 +54,79 @@ func _physics_process(delta):
 		animationPlayer.play("Start Mourning")
 		
 	var inputVector = Vector2()
-	if not isAttacking and not isMourning:
-		if Input.is_action_just_pressed("attack") or attackQueued:
-			attackQueued = false
-			if attackDelayTimer.is_stopped():
+	if not isAttacking:
+		if isMourning:
+			if (Input.is_action_just_pressed("attack") or attackQueued) and isHelmetActive and not helmetAnimationPlayer.current_animation in ["Left Deploy", "Right Deploy"]:
+				attackQueued = false
+				var attackVector = Vector2()
 				if Input.is_action_pressed("move_up") and not Input.is_action_pressed("move_down"):
-					animationPlayer.play("Punch Up")
+					attackVector.y = -1
 				elif not Input.is_action_pressed("move_up") and Input.is_action_pressed("move_down"):
-					animationPlayer.play("Punch Down")
-				else:
-					animationPlayer.play("Punch")
-				isAttacking = true
-				isMoving = false
-			else:
-				attackQueued = true
+					attackVector.y = 1
+				if Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right"):
+					attackVector.x = -1
+				elif not Input.is_action_pressed("move_left") and Input.is_action_pressed("move_right"):
+					attackVector.x = 1
+				if attackVector == Vector2():
+					attackVector = Vector2(model.scale.x, 0)
+				if attackVector == Vector2(1, 0):
+					helmetAnimationPlayer.play("Attack Right")
+					isAttacking = true
+				elif attackVector == Vector2(1, 1):
+					helmetAnimationPlayer.play("Attack Down Right")
+					isAttacking = true
+				elif attackVector == Vector2(0, 1):
+					helmetAnimationPlayer.play("Attack Down")
+					isAttacking = true
+				elif attackVector == Vector2(-1, 1):
+					helmetAnimationPlayer.play("Attack Down Left")
+					isAttacking = true
+				elif attackVector == Vector2(-1, 0):
+					helmetAnimationPlayer.play("Attack Left")
+					isAttacking = true
+				elif attackVector == Vector2(-1, -1):
+					helmetAnimationPlayer.play("Attack Up Left")
+					isAttacking = true
+				elif attackVector == Vector2(0, -1):
+					helmetAnimationPlayer.play("Attack Up")
+					isAttacking = true
+				elif attackVector == Vector2(1, -1):
+					helmetAnimationPlayer.play("Attack Up Right")
+					isAttacking = true
 		else:
-			if Input.is_action_pressed("move_left"):
-				inputVector.x -= 1
-			if Input.is_action_pressed("move_right"):
-				inputVector.x += 1
-			if Input.is_action_pressed("move_up"):
-				inputVector.y -= 1
-			if Input.is_action_pressed("move_down"):
-				inputVector.y += 1
-			var inputAcceleration = inputVector.normalized() * Acceleration * delta
-			if (velocity + inputAcceleration).length() < MaxMovementSpeed:
-				velocity += inputAcceleration
-			elif velocity.length() < MaxMovementSpeed:
-				velocity += inputAcceleration
-				velocity = velocity.normalized() * min(velocity.length(), MaxMovementSpeed)
+			if Input.is_action_just_pressed("attack") or attackQueued:
+				attackQueued = false
+				if attackDelayTimer.is_stopped():
+					if Input.is_action_pressed("move_up") and not Input.is_action_pressed("move_down"):
+						animationPlayer.play("Punch Up")
+					elif not Input.is_action_pressed("move_up") and Input.is_action_pressed("move_down"):
+						animationPlayer.play("Punch Down")
+					else:
+						animationPlayer.play("Punch")
+					isAttacking = true
+					isMoving = false
+				else:
+					attackQueued = true
 			else:
-				var parallelInputAcceleration = inputAcceleration.project(velocity)
-				if (velocity + parallelInputAcceleration).length() < velocity.length():
-					velocity += parallelInputAcceleration
-				velocity += (inputAcceleration - parallelInputAcceleration)
+				if Input.is_action_pressed("move_left"):
+					inputVector.x -= 1
+				if Input.is_action_pressed("move_right"):
+					inputVector.x += 1
+				if Input.is_action_pressed("move_up"):
+					inputVector.y -= 1
+				if Input.is_action_pressed("move_down"):
+					inputVector.y += 1
+				var inputAcceleration = inputVector.normalized() * Acceleration * delta
+				if (velocity + inputAcceleration).length() < MaxMovementSpeed:
+					velocity += inputAcceleration
+				elif velocity.length() < MaxMovementSpeed:
+					velocity += inputAcceleration
+					velocity = velocity.normalized() * min(velocity.length(), MaxMovementSpeed)
+				else:
+					var parallelInputAcceleration = inputAcceleration.project(velocity)
+					if (velocity + parallelInputAcceleration).length() < velocity.length():
+						velocity += parallelInputAcceleration
+					velocity += (inputAcceleration - parallelInputAcceleration)
 	
 	var friction = Friction
 	if isAttacking:
@@ -95,7 +142,7 @@ func _physics_process(delta):
 		position = newPosition
 	velocity = velocity.normalized() * max(0, velocity.length() - (friction * delta))
 	
-	if not isAttacking:
+	if not isAttacking and not isMourning:
 		if not isMoving and inputVector.length() > 0:
 			isMoving = true
 			animationPlayer.play("Walking")
@@ -104,15 +151,20 @@ func _physics_process(delta):
 			animationPlayer.play("Idle")
 		
 	if inputVector.x < 0:
-		sprite.scale.x = -0.5
+		model.scale.x = -1
 	elif inputVector.x > 0:
-		sprite.scale.x = 0.5
+		model.scale.x = 1
 		
 func CompleteAttack(value):
 	completeAttack = value
 	if completeAttack:
 		playIdleAnimation = true
 		attackDelayTimer.start()
+		
+func CompleteHelmetAttack(value):
+	completeHelmetAttack = value
+	if completeHelmetAttack:
+		playHelmetIdleAnimation = true
 		
 func SetMourningState(value):
 	mourningState = value
@@ -121,12 +173,23 @@ func SetMourningState(value):
 	elif mourningState == 5:
 		isMourning = false
 		playIdleAnimation = true
+		
+func SetHelmetActive(value):
+	if not isHelmetActive == value:
+		isHelmetActive = value
+		if isHelmetActive:
+			if model.scale.x < 0:
+				helmetAnimationPlayer.play("Left Deploy")
+			else:
+				helmetAnimationPlayer.play("Right Deploy")
+		else:
+			helmetAnimationPlayer.play("Inactive")
 
 func getGlobalPosition():
 	return to_global(Vector2())
 	
 func Damage():
-	pass#world.FailLevel()
+	world.FailLevel()
 
 func _on_DamageArea_body_entered(body):
 	cameraShakeTimer.start()
