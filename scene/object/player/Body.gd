@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 onready var animationPlayer = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
+onready var world = get_node("../../../..")
 
 const MovementSpeed = 230
 
@@ -38,4 +39,4 @@ func getGlobalPosition():
 	return to_global(Vector2())
 	
 func Damage():
-	print("hit")
+	world.FailLevel()

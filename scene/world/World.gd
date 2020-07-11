@@ -85,3 +85,6 @@ func renderSortEntities(entities):
 
 func depthComparison(a, b):
 	return a.getGlobalPosition().y < b.getGlobalPosition().y
+	
+func FailLevel():
+	restartLevel()
