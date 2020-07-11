@@ -192,7 +192,7 @@ func getGlobalPosition():
 	return to_global(Vector2())
 	
 func Damage():
-	world.FailLevel()
+	pass#world.FailLevel()
 
 func _on_DamageArea_body_entered(body):
 	cameraShakeTimer.start()

@@ -1,10 +1,11 @@
 extends Node2D
 
-#var victoryMenuClass = preload("res://scene/ui/Victory/Victory.tscn")
+var victoryMenuClass = preload("res://scene/menu/victory/Victory.tscn")
 var finalVictoryMenuClass = preload("res://scene/menu/final_victory/FinalVictory.tscn")
 
 var levelClasses = [
-	preload("res://scene/level/1/Level1.tscn")
+	preload("res://scene/level/1/Level1.tscn"),
+	preload("res://scene/level/2/Level2.tscn")
 ]
 
 onready var gui = get_node("GUI")
@@ -39,10 +40,10 @@ func victory():
 	victorious = true
 	if currentLevelIndex < len(levelClasses) - 1:
 		victorySoundEffect.play()
-		#gui.add_child(victoryMenuClass.instance())
+		gui.add_child(victoryMenuClass.instance())
 	else:
 		finalVictorySoundEffect.play()
-		advanceLevel()
+		completeGame()
 		
 func advanceLevel():
 	if not gameComplete:
