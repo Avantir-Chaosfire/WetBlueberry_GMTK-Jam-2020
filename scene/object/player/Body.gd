@@ -1,10 +1,9 @@
 extends KinematicBody2D
 
 onready var world = get_node("../../../..")
-onready var animationPlayer = get_node("AnimationPlayer")
-onready var sprite = get_node("Sprite")
+onready var animationPlayer = get_node("PlayerAnimationPlayer")
+onready var sprite = get_node("PlayerSprite")
 onready var attackDelayTimer = get_node("AttackDelayTimer")
-onready var mourningTimer = get_node("MourningTimer")
 onready var cameraShakeTimer = get_node("Camera/ShakeTimer")
 onready var nearbyEnemyDetector = get_node("NearbyEnemyDetector")
 
@@ -15,11 +14,13 @@ const AttackingFriction = 100
 const MourningKills = 5
 
 export var isAttacking = false
+export var mourningState = 0 setget SetMourningState
 export var completeAttack = false setget CompleteAttack
 
 var velocity = Vector2()
 var isMoving = false
 var playIdleAnimation = false
+var playMourningAnimation = false
 var killCount = 0
 var isMourning = false
 var attackQueued = false
@@ -31,18 +32,21 @@ func _physics_process(delta):
 	if playIdleAnimation:
 		playIdleAnimation = false
 		animationPlayer.play("Idle")
+	if playMourningAnimation:
+		playMourningAnimation = false
+		animationPlayer.play("Mourning")
 		
 	if isMourning:
 		killCount = 0
-		if mourningTimer.is_stopped() and len(nearbyEnemyDetector.get_overlapping_bodies() + nearbyEnemyDetector.get_overlapping_areas()) == 0:
-			isMourning = false
+		if mourningState == 3 and len(nearbyEnemyDetector.get_overlapping_bodies() + nearbyEnemyDetector.get_overlapping_areas()) == 0:
+			animationPlayer.play("End Mourning")
 		
 	if killCount >= MourningKills:
 		isMourning = true
-		mourningTimer.start()
+		animationPlayer.play("Start Mourning")
 		
 	var inputVector = Vector2()
-	if not isAttacking:
+	if not isAttacking and not isMourning:
 		if Input.is_action_just_pressed("attack") or attackQueued:
 			attackQueued = false
 			if attackDelayTimer.is_stopped():
@@ -56,7 +60,7 @@ func _physics_process(delta):
 				isMoving = false
 			else:
 				attackQueued = true
-		elif not isMourning:
+		else:
 			if Input.is_action_pressed("move_left"):
 				inputVector.x -= 1
 			if Input.is_action_pressed("move_right"):
@@ -109,12 +113,20 @@ func CompleteAttack(value):
 	if completeAttack:
 		playIdleAnimation = true
 		attackDelayTimer.start()
+		
+func SetMourningState(value):
+	mourningState = value
+	if mourningState == 2:
+		playMourningAnimation = true
+	elif mourningState == 5:
+		isMourning = false
+		playIdleAnimation = true
 
 func getGlobalPosition():
 	return to_global(Vector2())
 	
 func Damage():
-	world.FailLevel()
+	pass#world.FailLevel()
 
 func _on_DamageArea_body_entered(body):
 	cameraShakeTimer.start()

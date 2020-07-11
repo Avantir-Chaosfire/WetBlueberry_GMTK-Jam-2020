@@ -37,13 +37,13 @@ position = Vector2( 709.041, 1.19934 )
 position = Vector2( 598.229, 84.3089 )
 
 [node name="Enemy6" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( 690.573, -922.24 )
+position = Vector2( 2908, -1437.04 )
 
 [node name="Enemy7" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( 805.079, -726.471 )
+position = Vector2( 3022.51, -1241.27 )
 
 [node name="Enemy8" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( 729.357, -804.04 )
+position = Vector2( 2946.78, -1318.84 )
 
 [node name="Walls" type="Node2D" parent="."]
 

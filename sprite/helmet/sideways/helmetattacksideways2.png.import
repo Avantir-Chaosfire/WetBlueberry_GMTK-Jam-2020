@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/helmetattacksideways2.png-a23b5248e3e3c8b2e4cf95d667839bd0.stex"
+path="res://.import/helmetattacksideways2.png-a27c8a4e2827b46a637a123bfc33572d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/helmet/sidaways/helmetattacksideways2.png"
-dest_files=[ "res://.import/helmetattacksideways2.png-a23b5248e3e3c8b2e4cf95d667839bd0.stex" ]
+source_file="res://sprite/helmet/sideways/helmetattacksideways2.png"
+dest_files=[ "res://.import/helmetattacksideways2.png-a27c8a4e2827b46a637a123bfc33572d.stex" ]
 
 [params]
 
