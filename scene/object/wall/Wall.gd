@@ -5,3 +5,6 @@ func Hit(_body, _normal):
 
 func getGlobalPosition():
 	return to_global(Vector2())
+
+func IsEnemy():
+	return false

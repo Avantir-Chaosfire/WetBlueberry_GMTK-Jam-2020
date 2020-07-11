@@ -155,6 +155,9 @@ func _physics_process(delta):
 	elif inputVector.x > 0:
 		model.scale.x = 1
 		
+func IsEnemy():
+	return false
+		
 func CompleteAttack(value):
 	completeAttack = value
 	if completeAttack:

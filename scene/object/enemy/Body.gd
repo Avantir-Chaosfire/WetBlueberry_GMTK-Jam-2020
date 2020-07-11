@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+onready var world = get_node("../../../..")
 onready var player = get_node("../../Player/Body")
 onready var animationPlayer = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
@@ -73,9 +74,18 @@ func getGlobalPosition():
 	return to_global(Vector2())
 
 func Damage():
+	print("Damage")
 	dead = true
+	print("1")
 	animationPlayer.play("Dead")
+	print("2")
 	collision_layer = 0
+	print("3")
+	world.CheckVictory()
+	print("Complete")
 
 func Hit(_body, _normal):
 	pass
+		
+func IsEnemy():
+	return true

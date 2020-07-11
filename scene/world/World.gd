@@ -1,7 +1,7 @@
 extends Node2D
 
 #var victoryMenuClass = preload("res://scene/ui/Victory/Victory.tscn")
-#var finalVictoryMenuClass = preload("res://scene/ui/FinalVictory/FinalVictory.tscn")
+var finalVictoryMenuClass = preload("res://scene/menu/final_victory/FinalVictory.tscn")
 
 var levelClasses = [
 	preload("res://scene/level/1/Level1.tscn")
@@ -16,11 +16,13 @@ var currentLevelIndex = 0
 var victorious = false
 var gameComplete = false
 var inGame = false
+var entitiesToRender = []
 	
 func startGame():
 	inGame = true
 	currentLevel = levelClasses[currentLevelIndex].instance()
 	add_child(currentLevel)
+	entitiesToRender = currentLevel.GetEntitiesToRender()
 	
 func _ready():
 	startGame()
@@ -31,7 +33,6 @@ func _physics_process(_delta):
 			var satisfiesVictoryCondition = false
 			if satisfiesVictoryCondition:
 				victory()
-		var entitiesToRender = currentLevel.GetEntitiesToRender()
 		renderSortEntities(entitiesToRender)
 		
 func victory():
@@ -54,6 +55,7 @@ func advanceLevel():
 			victorious = false
 			currentLevel = levelClasses[currentLevelIndex].instance()
 			add_child(currentLevel)
+			entitiesToRender = currentLevel.GetEntitiesToRender()
 	
 func restartLevel():
 	if not gameComplete:
@@ -65,13 +67,26 @@ func restartLevel():
 func restartGame():
 	victorious = false
 	gameComplete = false
+	inGame = true
 	currentLevelIndex = 0
 	startGame()
 		
 func completeGame():
 	victorious = true
 	gameComplete = true
-	#gui.add_child(finalVictoryMenuClass.instance())
+	inGame = false
+	gui.add_child(finalVictoryMenuClass.instance())
+	
+func CheckVictory():
+	print("CheckVictory")
+	var isVictorious = true
+	for entity in entitiesToRender:
+		if entity.IsEnemy() and not entity.dead:
+			isVictorious = false
+			break
+	if isVictorious:
+		victory()
+	print("Done")
 		
 func unloadNode(node):
 	remove_child(node)
@@ -79,6 +94,7 @@ func unloadNode(node):
 	
 func loadNode(node):
 	add_child(node)
+	entitiesToRender = currentLevel.GetEntitiesToRender()
 	
 func renderSortEntities(entities):
 	entities.sort_custom(self, "depthComparison")

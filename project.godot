@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="WetBlueberry"
+config/name="Mea Culpa"
 run/main_scene="res://scene/world/World.tscn"
 config/icon="res://icon.png"
 
