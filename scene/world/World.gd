@@ -16,7 +16,6 @@ var currentLevelIndex = 0
 var victorious = false
 var gameComplete = false
 var inGame = false
-var entitiesToRender = []
 	
 func startGame():
 	inGame = true
