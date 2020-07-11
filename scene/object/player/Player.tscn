@@ -434,6 +434,7 @@ shape = SubResource( 1 )
 
 [node name="Camera" type="Camera2D" parent="Body"]
 current = true
+zoom = Vector2( 0.8, 0.8 )
 script = ExtResource( 14 )
 
 [node name="ShakeTimer" type="Timer" parent="Body/Camera"]

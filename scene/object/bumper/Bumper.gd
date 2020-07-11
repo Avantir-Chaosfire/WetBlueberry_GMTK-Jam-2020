@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-const BounceVelocity = 2000
+const BounceVelocity = 800
 
 func Hit(body, normal):
 	var bounceComponent = body.velocity.project(normal)

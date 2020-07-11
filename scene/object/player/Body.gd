@@ -65,8 +65,17 @@ func _physics_process(delta):
 				inputVector.y -= 1
 			if Input.is_action_pressed("move_down"):
 				inputVector.y += 1
-			velocity += inputVector.normalized() * Acceleration * delta
-			velocity = velocity.normalized() * min(velocity.length(), MaxMovementSpeed)
+			var inputAcceleration = inputVector.normalized() * Acceleration * delta
+			if (velocity + inputAcceleration).length() < MaxMovementSpeed:
+				velocity += inputAcceleration
+			elif velocity.length() < MaxMovementSpeed:
+				velocity += inputAcceleration
+				velocity = velocity.normalized() * min(velocity.length(), MaxMovementSpeed)
+			else:
+				var parallelInputAcceleration = inputAcceleration.project(velocity)
+				if (velocity + parallelInputAcceleration).length() < velocity.length():
+					velocity += parallelInputAcceleration
+				velocity += (inputAcceleration - parallelInputAcceleration)
 	
 	var friction = Friction
 	if isAttacking:
@@ -80,7 +89,7 @@ func _physics_process(delta):
 		if collisionInfo:
 			collisionInfo.collider.Hit(self, collisionInfo.normal)
 		position = newPosition
-	velocity = velocity.normalized() * (velocity.length() - (friction * delta))
+	velocity = velocity.normalized() * max(0, velocity.length() - (friction * delta))
 	
 	if not isAttacking:
 		if not isMoving and inputVector.length() > 0:
