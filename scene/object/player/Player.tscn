@@ -230,6 +230,10 @@ anims/Idle = SubResource( 3 )
 anims/Punch = SubResource( 5 )
 anims/Walking = SubResource( 4 )
 
+[node name="MourningTimer" type="Timer" parent="Body"]
+wait_time = 1.4
+one_shot = true
+
 [node name="AttackDelayTimer" type="Timer" parent="Body"]
 wait_time = 0.2
 one_shot = true

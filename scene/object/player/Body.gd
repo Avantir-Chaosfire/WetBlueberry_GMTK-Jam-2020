@@ -4,6 +4,7 @@ onready var world = get_node("../../../..")
 onready var animationPlayer = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
 onready var attackDelayTimer = get_node("AttackDelayTimer")
+onready var mourningTimer = get_node("MourningTimer")
 onready var cameraShakeTimer = get_node("Camera/ShakeTimer")
 onready var nearbyEnemyDetector = get_node("NearbyEnemyDetector")
 
@@ -33,11 +34,12 @@ func _physics_process(delta):
 		
 	if isMourning:
 		killCount = 0
-		if len(nearbyEnemyDetector.get_overlapping_bodies() + nearbyEnemyDetector.get_overlapping_areas()) == 0:
+		if mourningTimer.is_stopped() and len(nearbyEnemyDetector.get_overlapping_bodies() + nearbyEnemyDetector.get_overlapping_areas()) == 0:
 			isMourning = false
 		
 	if killCount >= MourningKills:
 		isMourning = true
+		mourningTimer.start()
 		
 	var inputVector = Vector2()
 	if not isAttacking:
@@ -64,7 +66,15 @@ func _physics_process(delta):
 	var friction = Friction
 	if isAttacking:
 		friction = AttackingFriction
-	move_and_slide(velocity)
+	var originalPosition = Vector2(position)
+	var slidingVelocity = move_and_slide(velocity)
+	if slidingVelocity.length() < velocity.length():
+		var newPosition = Vector2(position)
+		position = originalPosition
+		var collisionInfo = move_and_collide(velocity * delta)
+		if collisionInfo:
+			collisionInfo.collider.Hit(self, collisionInfo.normal)
+		position = newPosition
 	velocity = velocity.normalized() * (velocity.length() - (friction * delta))
 	
 	if not isAttacking:
