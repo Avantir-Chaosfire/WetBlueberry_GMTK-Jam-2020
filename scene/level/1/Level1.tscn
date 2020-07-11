@@ -89,13 +89,12 @@ scale = Vector2( 1, 25 )
 
 [node name="Bumper1" parent="Bumpers" instance=ExtResource( 6 )]
 position = Vector2( 140, -265 )
-scale = Vector2( 10, 1 )
+rotation = 1.5708
 
 [node name="Bumper2" parent="Bumpers" instance=ExtResource( 6 )]
 position = Vector2( 140, 265 )
-scale = Vector2( 10, 1 )
+rotation = 1.5708
 
 [node name="Bumper3" parent="Bumpers" instance=ExtResource( 6 )]
 position = Vector2( 334.378, 147.78 )
-rotation = -0.923788
-scale = Vector2( 10, 1 )
+rotation = 0.785398
