@@ -82,16 +82,11 @@ func getGlobalPosition():
 	return to_global(Vector2())
 
 func Damage():
-	print("Damage")
 	dead = true
-	print("1")
 	animationPlayer.play("Dead")
-	print("2")
 	collision_layer = 0
 	collision_mask = 0
-	print("3")
 	world.CheckVictory()
-	print("Complete")
 	sprite.scale.x = 0.5
 	deathSoundEffect.play()
 

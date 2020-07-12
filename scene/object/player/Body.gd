@@ -34,6 +34,7 @@ var killCount = 0
 var isMourning = false
 var attackQueued = false
 var attackDirection = Vector2()
+var facingDirection = Vector2()
 
 func _ready():
 	animationPlayer.play("Idle")
@@ -114,7 +115,12 @@ func _physics_process(delta):
 					elif not Input.is_action_pressed("move_up") and Input.is_action_pressed("move_down"):
 						animationPlayer.play("Punch Down")
 					else:
-						animationPlayer.play("Punch")
+						if facingDirection == Vector2(0, -1):
+							animationPlayer.play("Punch Up")
+						elif facingDirection == Vector2(0, 1):
+							animationPlayer.play("Punch Down")
+						else:
+							animationPlayer.play("Punch")
 					isAttacking = true
 					isMoving = false
 					attackSoundEffect.play()
@@ -123,12 +129,16 @@ func _physics_process(delta):
 			else:
 				if Input.is_action_pressed("move_left"):
 					inputVector.x -= 1
+					facingDirection = Vector2(-1, 0)
 				if Input.is_action_pressed("move_right"):
 					inputVector.x += 1
+					facingDirection = Vector2(1, 0)
 				if Input.is_action_pressed("move_up"):
 					inputVector.y -= 1
+					facingDirection = Vector2(0, -1)
 				if Input.is_action_pressed("move_down"):
 					inputVector.y += 1
+					facingDirection = Vector2(0, 1)
 				var inputAcceleration = inputVector.normalized() * Acceleration * delta
 				if (velocity + inputAcceleration).length() < MaxMovementSpeed:
 					velocity += inputAcceleration
