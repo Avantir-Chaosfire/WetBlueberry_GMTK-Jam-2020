@@ -18,7 +18,7 @@ font_data = ExtResource( 10 )
 script = ExtResource( 5 )
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 1506.61, 0 )
+position = Vector2( 1500.95, 53.7401 )
 z_index = -10
 z_as_relative = false
 texture = ExtResource( 4 )
@@ -28,6 +28,7 @@ region_rect = Rect2( 0, 0, 10000, 10000 )
 [node name="Entities" type="Node2D" parent="."]
 
 [node name="Player" parent="Entities" instance=ExtResource( 2 )]
+position = Vector2( 62.2957, -92.4996 )
 
 [node name="Enemy1" parent="Entities" instance=ExtResource( 3 )]
 position = Vector2( 1578.4, -168.085 )
@@ -74,9 +75,9 @@ position = Vector2( 4232.69, -1729.64 )
 [node name="Walls" type="Node2D" parent="."]
 
 [node name="Wall1" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 300, 300 )
+position = Vector2( 318.877, 592.601 )
 rotation = 1.5708
-scale = Vector2( 1, 7 )
+scale = Vector2( 6.592, 27.608 )
 
 [node name="Wall2" parent="Walls" instance=ExtResource( 7 )]
 position = Vector2( 2628.74, -1607.53 )
@@ -124,18 +125,18 @@ rotation = -0.616904
 scale = Vector2( 7, 1 )
 
 [node name="Wall3" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( -150, 150 )
+position = Vector2( -410.509, 384.081 )
 rotation = -0.785398
-scale = Vector2( 1, 5 )
+scale = Vector2( 7.604, 14.522 )
 
 [node name="Wall4" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( -150, -150 )
+position = Vector2( -372.754, -338.775 )
 rotation = 0.785398
-scale = Vector2( 1, 5 )
+scale = Vector2( 5.966, 5 )
 
 [node name="Wall5" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 1200, -300 )
-scale = Vector2( 25, 1 )
+position = Vector2( 1136.86, -814.357 )
+scale = Vector2( 33.346, 11.178 )
 
 [node name="Wall18" parent="Walls" instance=ExtResource( 1 )]
 position = Vector2( 2637.94, -123.925 )
@@ -143,35 +144,35 @@ rotation = 0.647179
 scale = Vector2( 6, 1 )
 
 [node name="Wall19" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 1737.03, 292.785 )
+position = Vector2( 1720.06, 295.613 )
 rotation = 1.5708
 scale = Vector2( 7, 1 )
 
 [node name="Wall20" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 2379.7, 577.439 )
-scale = Vector2( 13, 1 )
+position = Vector2( 2323.64, 868.767 )
+scale = Vector2( 24.017, 7.147 )
 
 [node name="Wall21" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 3126.68, 232.465 )
+position = Vector2( 3426.82, 541.618 )
 rotation = -1.19048
-scale = Vector2( 8, 1 )
+scale = Vector2( 14.973, 8.64 )
 
 [node name="Wall6" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 806.321, 120.681 )
+position = Vector2( 796.242, 122.777 )
 rotation = 0.785398
 scale = Vector2( 1, 6 )
 
 [node name="Wall7" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 3235.53, -672.595 )
-scale = Vector2( 1, 14 )
+position = Vector2( 3820.35, -634.187 )
+scale = Vector2( 13.176, 14.62 )
 
 [node name="Wall9" parent="Walls" instance=ExtResource( 1 )]
 position = Vector2( 2832.95, -675.332 )
 scale = Vector2( 1, 14 )
 
 [node name="Wall8" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 1400, -60 )
-scale = Vector2( 9, 1 )
+position = Vector2( 1371.72, 92.5415 )
+scale = Vector2( 7.981, 4.323 )
 
 [node name="Bumpers" type="Node2D" parent="."]
 
@@ -190,7 +191,7 @@ rotation = 0.785398
 scale = Vector2( 3, 6 )
 
 [node name="SandstoneFloor1" parent="Floors" instance=ExtResource( 9 )]
-position = Vector2( -2.55139, -3.32757 )
+position = Vector2( 35.2035, -8.99078 )
 rotation = 0.785398
 scale = Vector2( 5, 5 )
 
@@ -235,7 +236,7 @@ rotation = 0.650837
 scale = Vector2( 4, 3 )
 
 [node name="SandstoneFloor3" parent="Floors" instance=ExtResource( 9 )]
-position = Vector2( 1255.47, -171.063 )
+position = Vector2( 1192.12, -166.604 )
 scale = Vector2( 24, 3 )
 
 [node name="SandstoneFloor6" parent="Floors" instance=ExtResource( 9 )]
@@ -247,7 +248,7 @@ position = Vector2( 3023.26, -653.107 )
 scale = Vector2( 4, 14 )
 
 [node name="SandstoneFloor2" parent="Floors" instance=ExtResource( 9 )]
-position = Vector2( 365.369, -29.826 )
+position = Vector2( 384.246, -29.826 )
 scale = Vector2( 6, 6 )
 
 [node name="Text" type="Node2D" parent="."]
