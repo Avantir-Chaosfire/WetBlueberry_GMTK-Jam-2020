@@ -189,7 +189,7 @@ rotation = 0.785398
 scale = Vector2( 3, 6 )
 
 [node name="SandstoneFloor1" parent="Floors" instance=ExtResource( 9 )]
-position = Vector2( -2.55139, -3.32757 )
+position = Vector2( -3.7406, -5.70596 )
 rotation = 0.785398
 scale = Vector2( 5, 5 )
 
