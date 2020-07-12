@@ -31,29 +31,44 @@ region_rect = Rect2( 0, 0, 10000, 10000 )
 [node name="Enemy1" parent="Entities" instance=ExtResource( 3 )]
 position = Vector2( 1578.4, -168.085 )
 
-[node name="Enemy2" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( 1517.22, -903.042 )
+[node name="Enemy9" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 2008.73, 155.365 )
 
-[node name="Enemy3" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( 1668.69, -857.962 )
+[node name="Enemy11" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 2188.74, 96.3003 )
+
+[node name="Enemy12" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 2841.26, 220.055 )
+
+[node name="Enemy13" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 2754.07, 431.001 )
+
+[node name="Enemy2" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 3078.92, -2109.6 )
 
 [node name="Enemy4" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( 1465.9, -1850.7 )
+position = Vector2( 2898.29, -2075.92 )
+
+[node name="Enemy14" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 2890.65, -2194.23 )
+
+[node name="Enemy15" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 3150.18, -1957.61 )
 
 [node name="Enemy5" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( -68.8311, -1785.34 )
+position = Vector2( 1363.56, -2010.56 )
 
 [node name="Enemy6" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( 1585.76, -2000.44 )
+position = Vector2( 3018.15, -2225.66 )
 
 [node name="Enemy7" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( -11.5251, -1499.77 )
+position = Vector2( 1420.86, -1724.99 )
 
 [node name="Enemy8" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( -87.247, -1577.34 )
+position = Vector2( 1345.14, -1802.56 )
 
 [node name="Enemy10" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( 2800.3, -1504.42 )
+position = Vector2( 4232.69, -1729.64 )
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -63,47 +78,47 @@ rotation = 1.5708
 scale = Vector2( 1, 7 )
 
 [node name="Wall2" parent="Walls" instance=ExtResource( 7 )]
-position = Vector2( 1196.35, -1382.31 )
+position = Vector2( 2628.74, -1607.53 )
 rotation = 0.933993
 scale = Vector2( 7, 1 )
 
 [node name="Wall13" parent="Walls" instance=ExtResource( 7 )]
-position = Vector2( 403.383, -1474.35 )
+position = Vector2( 1835.77, -1699.57 )
 rotation = -0.226953
 scale = Vector2( 13, 1 )
 
 [node name="Wall14" parent="Walls" instance=ExtResource( 7 )]
-position = Vector2( -199.748, -1690.06 )
+position = Vector2( 1232.64, -1915.28 )
 rotation = -1.44743
 scale = Vector2( 8, 1 )
 
 [node name="Wall15" parent="Walls" instance=ExtResource( 7 )]
-position = Vector2( 455.51, -1968.17 )
+position = Vector2( 1887.9, -2193.39 )
 rotation = 0.0966765
 scale = Vector2( 12, 1 )
 
 [node name="Wall11" parent="Walls" instance=ExtResource( 7 )]
-position = Vector2( 1241.31, -2127.77 )
+position = Vector2( 2673.7, -2352.99 )
 rotation = -0.785398
 scale = Vector2( 7, 1 )
 
 [node name="Wall12" parent="Walls" instance=ExtResource( 7 )]
-position = Vector2( 2168.07, -2009 )
+position = Vector2( 3600.46, -2234.22 )
 rotation = 0.42775
 scale = Vector2( 16, 1 )
 
 [node name="Wall16" parent="Walls" instance=ExtResource( 7 )]
-position = Vector2( 2663.71, -1300.77 )
+position = Vector2( 4096.1, -1525.99 )
 rotation = 0.42775
 scale = Vector2( 8, 1 )
 
 [node name="Wall17" parent="Walls" instance=ExtResource( 7 )]
-position = Vector2( 2925.29, -1434.15 )
+position = Vector2( 4357.68, -1659.37 )
 rotation = -1.76858
 scale = Vector2( 6, 1 )
 
 [node name="Wall10" parent="Walls" instance=ExtResource( 7 )]
-position = Vector2( 2066.44, -1291.87 )
+position = Vector2( 3498.83, -1517.09 )
 rotation = -0.616904
 scale = Vector2( 7, 1 )
 
@@ -118,8 +133,27 @@ rotation = 0.785398
 scale = Vector2( 1, 5 )
 
 [node name="Wall5" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 700, -300 )
-scale = Vector2( 15, 1 )
+position = Vector2( 1200, -300 )
+scale = Vector2( 25, 1 )
+
+[node name="Wall18" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 2637.94, -123.925 )
+rotation = 0.647179
+scale = Vector2( 6, 1 )
+
+[node name="Wall19" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 1737.03, 292.785 )
+rotation = 1.5708
+scale = Vector2( 7, 1 )
+
+[node name="Wall20" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 2379.7, 577.439 )
+scale = Vector2( 13, 1 )
+
+[node name="Wall21" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 3126.68, 232.465 )
+rotation = -1.19048
+scale = Vector2( 8, 1 )
 
 [node name="Wall6" parent="Walls" instance=ExtResource( 1 )]
 position = Vector2( 806.321, 120.681 )
@@ -127,12 +161,12 @@ rotation = 0.785398
 scale = Vector2( 1, 6 )
 
 [node name="Wall7" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 1800, -590 )
-scale = Vector2( 1, 11 )
+position = Vector2( 3235.53, -672.595 )
+scale = Vector2( 1, 14 )
 
 [node name="Wall9" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 1400, -700 )
-scale = Vector2( 1, 9 )
+position = Vector2( 2832.95, -675.332 )
+scale = Vector2( 1, 14 )
 
 [node name="Wall8" parent="Walls" instance=ExtResource( 1 )]
 position = Vector2( 1400, -60 )
@@ -145,7 +179,7 @@ z_index = -5
 z_as_relative = false
 
 [node name="CoralFloor7" parent="Floors" instance=ExtResource( 8 )]
-position = Vector2( 862.983, -1859.96 )
+position = Vector2( 2295.37, -2085.18 )
 rotation = -2.93595
 scale = Vector2( 3, 1 )
 
@@ -160,32 +194,32 @@ rotation = 0.785398
 scale = Vector2( 5, 5 )
 
 [node name="CoralFloor2" parent="Floors" instance=ExtResource( 8 )]
-position = Vector2( 2828.59, -1379.19 )
+position = Vector2( 4260.98, -1604.41 )
 rotation = 1.40809
 scale = Vector2( 3, 2 )
 
 [node name="CoralFloor3" parent="Floors" instance=ExtResource( 8 )]
-position = Vector2( 2074.41, -1803.07 )
+position = Vector2( 3506.8, -2028.29 )
 rotation = 0.448366
 scale = Vector2( 17, 4 )
 
 [node name="CoralFloor4" parent="Floors" instance=ExtResource( 8 )]
-position = Vector2( 1284.64, -1883.39 )
+position = Vector2( 2717.03, -2108.61 )
 rotation = 2.37228
 scale = Vector2( 8, 4 )
 
 [node name="CoralFloor5" parent="Floors" instance=ExtResource( 8 )]
-position = Vector2( 304.122, -1752.88 )
+position = Vector2( 1736.51, -1978.1 )
 rotation = 3.24656
 scale = Vector2( 10, 4 )
 
 [node name="CoralFloor6" parent="Floors" instance=ExtResource( 8 )]
-position = Vector2( 434.634, -1598.94 )
+position = Vector2( 1867.02, -1824.16 )
 rotation = 2.92396
 scale = Vector2( 13, 3 )
 
 [node name="CoralFloor1" parent="Floors" instance=ExtResource( 8 )]
-position = Vector2( 1665.01, -1567.58 )
+position = Vector2( 3097.4, -1792.8 )
 rotation = -0.607797
 scale = Vector2( 9, 9 )
 
@@ -194,7 +228,7 @@ position = Vector2( 1174.73, -181.169 )
 scale = Vector2( 12, 3 )
 
 [node name="SandstoneFloor5" parent="Floors" instance=ExtResource( 9 )]
-position = Vector2( 1585.81, -696.083 )
+position = Vector2( 3018.2, -921.301 )
 scale = Vector2( 4, 8 )
 
 [node name="SandstoneFloor2" parent="Floors" instance=ExtResource( 9 )]
@@ -208,10 +242,10 @@ z_as_relative = false
 [node name="Movement Controls" type="Label" parent="Text"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 75.6285
-margin_top = 277.305
-margin_right = 555.629
-margin_bottom = 329.305
+margin_left = 68.4796
+margin_top = -325.587
+margin_right = 548.48
+margin_bottom = -273.587
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "WASD/Arrow Keys: Move"
@@ -222,9 +256,9 @@ __meta__ = {
 [node name="Attack Controls" type="Label" parent="Text"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 73.5277
+margin_left = 1012.42
 margin_top = -325.623
-margin_right = 553.528
+margin_right = 1492.42
 margin_bottom = -273.623
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )

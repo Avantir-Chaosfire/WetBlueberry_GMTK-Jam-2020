@@ -102,6 +102,7 @@ func _physics_process(delta):
 				elif attackVector == Vector2(1, -1):
 					helmetAnimationPlayer.play("Attack Up Right")
 					isAttacking = true
+				velocity += attackDirection * KnockbackForce
 		else:
 			if Input.is_action_just_pressed("attack") or attackQueued:
 				attackQueued = false
@@ -177,7 +178,6 @@ func CompleteHelmetAttack(value):
 	completeHelmetAttack = value
 	if completeHelmetAttack:
 		playHelmetIdleAnimation = true
-		velocity += -attackDirection * KnockbackForce
 		
 func SetMourningState(value):
 	mourningState = value
