@@ -14,7 +14,7 @@ onready var spawnSoundEffect = get_node("SpawnSoundEffect")
 const MaxMovementSpeed = 280
 const Acceleration = 1600
 const Friction = 330
-const KnockbackForce = 240
+const KnockbackForce = 120
 const AttackingFriction = 100
 const MourningKills = 5
 

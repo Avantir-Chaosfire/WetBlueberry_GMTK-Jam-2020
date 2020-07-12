@@ -81,6 +81,7 @@ func Damage():
 	animationPlayer.play("Dead")
 	print("2")
 	collision_layer = 0
+	collision_mask = 0
 	print("3")
 	world.CheckVictory()
 	print("Complete")
