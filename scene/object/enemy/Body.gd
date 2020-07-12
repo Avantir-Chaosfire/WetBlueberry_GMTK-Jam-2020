@@ -17,6 +17,7 @@ const FastSpeedDistance = 501
 var velocity = Vector2()
 var isMoving = false
 var dead = false
+var fleeing = false
 
 func _ready():
 	animationPlayer.play("Idle")
@@ -38,6 +39,12 @@ func _physics_process(delta):
 				sprite.scale.x = -0.5
 			elif targetVector.x > 0:
 				sprite.scale.x = 0.5
+			if player.mourningState == 1:
+				if fleeing and targetVector.length() > 180:
+					fleeing = false
+				elif targetVector.length() < 120 or fleeing:
+					targetVector *= -1
+					fleeing = true
 			var maxMovementSpeed = MaxMovementSpeed
 			if targetVector.length() > FastSpeedDistance:
 				maxMovementSpeed = MaxFarMovementSpeed

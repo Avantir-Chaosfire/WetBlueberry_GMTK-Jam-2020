@@ -10,6 +10,7 @@ onready var cameraShakeTimer = get_node("Camera/ShakeTimer")
 onready var nearbyEnemyDetector = get_node("NearbyEnemyDetector")
 onready var camera = get_node("Camera")
 onready var spawnSoundEffect = get_node("SpawnSoundEffect")
+onready var attackSoundEffect = get_node("AttackSoundEffect")
 
 const MaxMovementSpeed = 280
 const Acceleration = 1600
@@ -103,6 +104,7 @@ func _physics_process(delta):
 					helmetAnimationPlayer.play("Attack Up Right")
 					isAttacking = true
 				velocity += attackDirection * KnockbackForce
+				attackSoundEffect.play()
 		else:
 			if Input.is_action_just_pressed("attack") or attackQueued:
 				attackQueued = false
@@ -115,6 +117,7 @@ func _physics_process(delta):
 						animationPlayer.play("Punch")
 					isAttacking = true
 					isMoving = false
+					attackSoundEffect.play()
 				else:
 					attackQueued = true
 			else:

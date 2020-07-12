@@ -19,3 +19,4 @@ shape = SubResource( 1 )
 
 [node name="BumpSoundEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -10.0
