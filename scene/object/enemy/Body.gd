@@ -6,7 +6,7 @@ onready var animationPlayer = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
 
 const MaxMovementSpeed = 190
-const MaxFarMovementSpeed = 380
+const MaxFarMovementSpeed = 245
 const Acceleration = 1200
 const DetectionRange = 500
 const MourningDetectionRange = 2000
