@@ -12,6 +12,7 @@ var levelClasses = [
 onready var gui = get_node("GUI")
 onready var victorySoundEffect = get_node("VictorySoundEffect")
 onready var finalVictorySoundEffect = get_node("FinalVictorySoundEffect")
+onready var music = get_node("Music")
 
 var currentLevel = null
 var currentLevelIndex = 0
@@ -31,6 +32,7 @@ func startGame():
 	
 func _ready():
 	startGame()
+	music.play()
 
 func _physics_process(_delta):
 	if inGame:
