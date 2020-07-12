@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://sprite/enemy/walk/walk3.png" type="Texture" id=1]
 [ext_resource path="res://scene/object/enemy/Body.gd" type="Script" id=2]
+[ext_resource path="res://sounds/enemy_dies.wav" type="AudioStream" id=3]
 [ext_resource path="res://sprite/enemy/idle/idle1.png" type="Texture" id=4]
 [ext_resource path="res://sprite/enemy/walk/walk4.png" type="Texture" id=5]
 [ext_resource path="res://sprite/enemy/idle/idle2.png" type="Texture" id=6]
@@ -101,4 +102,7 @@ collision_mask = 2
 [node name="Hitbox" type="CollisionShape2D" parent="Body/DamageArea"]
 scale = Vector2( 2, 2 )
 shape = SubResource( 6 )
+
+[node name="DeathSoundEffect" type="AudioStreamPlayer" parent="Body"]
+stream = ExtResource( 3 )
 [connection signal="body_entered" from="Body/DamageArea" to="Body" method="_on_DamageArea_body_entered"]

@@ -4,6 +4,7 @@ onready var world = get_node("../../../..")
 onready var player = get_node("../../Player/Body")
 onready var animationPlayer = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
+onready var deathSoundEffect = get_node("DeathSoundEffect")
 
 const MaxMovementSpeed = 190
 const MaxFarMovementSpeed = 245
@@ -84,6 +85,7 @@ func Damage():
 	world.CheckVictory()
 	print("Complete")
 	sprite.scale.x = 0.5
+	deathSoundEffect.play()
 
 func Hit(_body, _normal):
 	pass

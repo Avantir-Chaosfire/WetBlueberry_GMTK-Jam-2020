@@ -9,6 +9,7 @@ onready var attackDelayTimer = get_node("AttackDelayTimer")
 onready var cameraShakeTimer = get_node("Camera/ShakeTimer")
 onready var nearbyEnemyDetector = get_node("NearbyEnemyDetector")
 onready var camera = get_node("Camera")
+onready var spawnSoundEffect = get_node("SpawnSoundEffect")
 
 const MaxMovementSpeed = 280
 const Acceleration = 1600
@@ -37,6 +38,7 @@ func _ready():
 	animationPlayer.play("Idle")
 	helmetAnimationPlayer.play("Inactive")
 	inGameUI.SetKillCount(killCount)
+	spawnSoundEffect.play()
 
 func _physics_process(delta):
 	if playHelmetIdleAnimation:
