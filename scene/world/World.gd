@@ -5,7 +5,7 @@ var victoryMenuClass = preload("res://scene/menu/victory/Victory.tscn")
 var finalVictoryMenuClass = preload("res://scene/menu/final_victory/FinalVictory.tscn")
 
 var levelClasses = [
-	preload("res://scene/level/1/Level1.tscn"),
+	#preload("res://scene/level/1/Level1.tscn"),
 	preload("res://scene/level/2/Level2.tscn")
 ]
 
