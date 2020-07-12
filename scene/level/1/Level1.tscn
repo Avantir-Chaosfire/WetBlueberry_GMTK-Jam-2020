@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scene/object/wall/wood/WoodWall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scene/object/player/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://scene/object/wall/ripple/RippleWall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scene/object/floor/coral/CoralFloor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scene/object/floor/sandstone/SandstoneFloor.tscn" type="PackedScene" id=9]
+[ext_resource path="res://font/Rouli7.ttf" type="DynamicFontData" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 10 )
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 5 )
@@ -127,3 +132,35 @@ scale = Vector2( 2.5, 8 )
 [node name="SandstoneFloor2" parent="Floors" instance=ExtResource( 9 )]
 position = Vector2( 365.369, -29.826 )
 scale = Vector2( 6, 6 )
+
+[node name="Text" type="Node2D" parent="."]
+z_index = 4096
+z_as_relative = false
+
+[node name="Movement Controls" type="Label" parent="Text"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 75.6285
+margin_top = 277.305
+margin_right = 555.629
+margin_bottom = 329.305
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "WASD/Arrow Keys: Move"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Attack Controls" type="Label" parent="Text"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 73.5277
+margin_top = -325.623
+margin_right = 553.528
+margin_bottom = -273.623
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Z/Space: Attack"
+__meta__ = {
+"_edit_use_anchors_": false
+}

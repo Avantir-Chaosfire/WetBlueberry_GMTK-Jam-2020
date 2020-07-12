@@ -19,12 +19,14 @@ var victorious = false
 var gameComplete = false
 var inGame = false
 var entitiesToRender = []
+var deadEnemies = {"Level1":[],"Level2":[]}
 	
 func startGame():
 	gui.add_child(titleMenuClass.instance())
 	inGame = true
 	currentLevel = levelClasses[currentLevelIndex].instance()
 	add_child(currentLevel)
+	currentLevel.setDeadEnemies(deadEnemies[currentLevel.name])
 	entitiesToRender = currentLevel.GetEntitiesToRender()
 	
 func _ready():
@@ -58,6 +60,7 @@ func advanceLevel():
 			victorious = false
 			currentLevel = levelClasses[currentLevelIndex].instance()
 			add_child(currentLevel)
+			currentLevel.setDeadEnemies(deadEnemies[currentLevel.name])
 			entitiesToRender = currentLevel.GetEntitiesToRender()
 	
 func restartLevel():
@@ -72,6 +75,10 @@ func restartGame():
 	gameComplete = false
 	inGame = true
 	currentLevelIndex = 0
+	remove_child(currentLevel)
+	currentLevel.queue_free()
+	for key in deadEnemies.keys():
+		deadEnemies[key] = []
 	startGame()
 		
 func completeGame():
@@ -81,15 +88,13 @@ func completeGame():
 	gui.add_child(finalVictoryMenuClass.instance())
 	
 func CheckVictory():
-	print("CheckVictory")
 	var isVictorious = true
-	for entity in entitiesToRender:
+	for entity in currentLevel.GetEntitiesToRender():
 		if entity.IsEnemy() and not entity.dead:
 			isVictorious = false
 			break
 	if isVictorious:
 		victory()
-	print("Done")
 		
 func unloadNode(node):
 	remove_child(node)
@@ -97,6 +102,7 @@ func unloadNode(node):
 	
 func loadNode(node):
 	add_child(node)
+	currentLevel.setDeadEnemies(deadEnemies[currentLevel.name])
 	entitiesToRender = currentLevel.GetEntitiesToRender()
 	
 func renderSortEntities(entities):
@@ -110,5 +116,6 @@ func renderSortEntities(entities):
 func depthComparison(a, b):
 	return a.getGlobalPosition().y < b.getGlobalPosition().y
 	
-func FailLevel():
+func FailLevel(enemyName):
+	deadEnemies[currentLevel.name].append(enemyName)
 	restartLevel()

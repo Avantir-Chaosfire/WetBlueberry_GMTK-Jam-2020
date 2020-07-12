@@ -3,11 +3,11 @@
 [ext_resource path="res://font/Rouli7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scene/menu/victory/Victory.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 100
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 100
 outline_size = 1
 font_data = ExtResource( 1 )
@@ -44,7 +44,7 @@ margin_bottom = 408.0
 [node name="Text" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
 margin_right = 705.0
 margin_bottom = 103.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "The air grows still."
 align = 1
@@ -53,6 +53,6 @@ align = 1
 margin_top = 107.0
 margin_right = 705.0
 margin_bottom = 216.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Mea Culpa"
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/NextLevelButton" to="." method="_on_NextLevelButton_pressed"]

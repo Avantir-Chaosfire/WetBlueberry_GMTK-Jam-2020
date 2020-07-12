@@ -68,7 +68,7 @@ func _physics_process(delta):
 
 func _on_DamageArea_body_entered(body):
 	if not dead:
-		body.Damage()
+		body.Damage(get_parent().name)
 
 func getGlobalPosition():
 	return to_global(Vector2())

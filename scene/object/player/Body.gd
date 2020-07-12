@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 onready var world = get_node("../../../..")
+onready var inGameUI = get_node("../../../../GUI/InGameMenu")
 onready var animationPlayer = get_node("PlayerAnimationPlayer")
 onready var helmetAnimationPlayer = get_node("HelmetAnimationPlayer")
 onready var model = get_node("PlayerModel")
@@ -11,6 +12,7 @@ onready var nearbyEnemyDetector = get_node("NearbyEnemyDetector")
 const MaxMovementSpeed = 280
 const Acceleration = 1600
 const Friction = 330
+const KnockbackForce = 240
 const AttackingFriction = 100
 const MourningKills = 5
 
@@ -28,10 +30,12 @@ var playMourningAnimation = false
 var killCount = 0
 var isMourning = false
 var attackQueued = false
+var attackDirection = Vector2()
 
 func _ready():
 	animationPlayer.play("Idle")
 	helmetAnimationPlayer.play("Inactive")
+	inGameUI.SetKillCount(killCount)
 
 func _physics_process(delta):
 	if playHelmetIdleAnimation:
@@ -69,6 +73,7 @@ func _physics_process(delta):
 					attackVector.x = 1
 				if attackVector == Vector2():
 					attackVector = Vector2(model.scale.x, 0)
+				attackDirection = attackVector
 				if attackVector == Vector2(1, 0):
 					helmetAnimationPlayer.play("Attack Right")
 					isAttacking = true
@@ -168,6 +173,7 @@ func CompleteHelmetAttack(value):
 	completeHelmetAttack = value
 	if completeHelmetAttack:
 		playHelmetIdleAnimation = true
+		velocity += -attackDirection * KnockbackForce
 		
 func SetMourningState(value):
 	mourningState = value
@@ -176,6 +182,8 @@ func SetMourningState(value):
 	elif mourningState == 5:
 		isMourning = false
 		playIdleAnimation = true
+		killCount = 0
+		inGameUI.SetKillCount(killCount)
 		
 func SetHelmetActive(value):
 	if not isHelmetActive == value:
@@ -191,10 +199,16 @@ func SetHelmetActive(value):
 func getGlobalPosition():
 	return to_global(Vector2())
 	
-func Damage():
-	pass#world.FailLevel()
+func Damage(enemyName):
+	world.FailLevel(enemyName)
+	
+func SetKillCount(value):
+	killCount = value
+	inGameUI.SetKillCount(killCount)
 
 func _on_DamageArea_body_entered(body):
 	cameraShakeTimer.start()
 	body.Damage()
-	killCount += 1
+	if not isMourning:
+		killCount += 1
+		inGameUI.SetKillCount(killCount)

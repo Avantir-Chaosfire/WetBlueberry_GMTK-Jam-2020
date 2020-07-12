@@ -16,3 +16,9 @@ func GetEntitiesToRender():
 			bodiesToRender.append(entity.get_node("Body"))
 		return bodiesToRender + walls.get_children()
 	return []
+
+func setDeadEnemies(enemyNames):
+	for entity in entities.get_children():
+		if entity.name in enemyNames:
+			entity.get_node("Body").Damage()
+	entities.get_node("Player/Body").SetKillCount(len(enemyNames))
