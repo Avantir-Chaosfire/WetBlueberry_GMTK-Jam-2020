@@ -8,6 +8,7 @@ onready var model = get_node("PlayerModel")
 onready var attackDelayTimer = get_node("AttackDelayTimer")
 onready var cameraShakeTimer = get_node("Camera/ShakeTimer")
 onready var nearbyEnemyDetector = get_node("NearbyEnemyDetector")
+onready var camera = get_node("Camera")
 
 const MaxMovementSpeed = 280
 const Acceleration = 1600
@@ -56,6 +57,7 @@ func _physics_process(delta):
 	if killCount >= MourningKills:
 		isMourning = true
 		animationPlayer.play("Start Mourning")
+		camera.ZoomIn()
 		
 	var inputVector = Vector2()
 	if not isAttacking:
@@ -179,6 +181,8 @@ func SetMourningState(value):
 	mourningState = value
 	if mourningState == 2:
 		playMourningAnimation = true
+	elif mourningState == 4:
+		camera.ZoomOut()
 	elif mourningState == 5:
 		isMourning = false
 		playIdleAnimation = true
