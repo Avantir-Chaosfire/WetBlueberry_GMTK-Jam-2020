@@ -1,0 +1,242 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scene/object/wall/wood/WoodWall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scene/object/player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/object/enemy/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprite/background.png" type="Texture" id=4]
+[ext_resource path="res://scene/level/Level.gd" type="Script" id=5]
+[ext_resource path="res://scene/object/bumper/Bumper.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scene/object/wall/ripple/RippleWall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scene/object/floor/coral/CoralFloor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scene/object/floor/sandstone/SandstoneFloor.tscn" type="PackedScene" id=9]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( -5.04535, -16.8179 )
+z_index = -10
+z_as_relative = false
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 10000, 10000 )
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource( 2 )]
+
+[node name="Enemy1" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 469, 741.875 )
+
+[node name="Enemy9" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 523.397, 408.914 )
+
+[node name="Enemy11" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 1271.79, 143.191 )
+
+[node name="Enemy12" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 1483.7, 203.735 )
+
+[node name="Enemy13" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 987.572, 690.819 )
+
+[node name="Enemy15" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 247.572, 1534.82 )
+
+[node name="Enemy16" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 247.572, 1330.82 )
+
+[node name="Enemy17" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 1359.57, 1530.82 )
+
+[node name="Enemy19" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 1475.57, 1334.82 )
+
+[node name="Enemy20" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 1546.92, 1280.12 )
+
+[node name="Enemy18" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 871.572, 1430.82 )
+
+[node name="Enemy14" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 1298.7, 862.998 )
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall1" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 249.521, 837.095 )
+rotation = 1.5708
+scale = Vector2( 0.413, 7 )
+
+[node name="Wall8" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 1633.52, 1177.09 )
+rotation = 1.5708
+scale = Vector2( 0.413, 7 )
+
+[node name="Wall2" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( 1196.35, -1382.31 )
+rotation = 0.933993
+scale = Vector2( 7, 1 )
+
+[node name="Wall13" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( 403.383, -1474.35 )
+rotation = -0.226953
+scale = Vector2( 13, 1 )
+
+[node name="Wall14" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( -199.748, -1690.06 )
+rotation = -1.44743
+scale = Vector2( 8, 1 )
+
+[node name="Wall15" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( 455.51, -1968.17 )
+rotation = 0.0966765
+scale = Vector2( 12, 1 )
+
+[node name="Wall11" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( 1241.31, -2127.77 )
+rotation = -0.785398
+scale = Vector2( 7, 1 )
+
+[node name="Wall12" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( 2168.07, -2009 )
+rotation = 0.42775
+scale = Vector2( 16, 1 )
+
+[node name="Wall16" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( 2663.71, -1300.77 )
+rotation = 0.42775
+scale = Vector2( 8, 1 )
+
+[node name="Wall17" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( 2925.29, -1434.15 )
+rotation = -1.76858
+scale = Vector2( 6, 1 )
+
+[node name="Wall10" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( 2066.44, -1291.87 )
+rotation = -0.616904
+scale = Vector2( 7, 1 )
+
+[node name="Wall3" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( -383.475, 753.761 )
+rotation = -0.785398
+scale = Vector2( 10.722, 12.521 )
+
+[node name="Wall6" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 2134.03, 612.268 )
+rotation = 3.15032
+scale = Vector2( 10.722, 32.969 )
+
+[node name="Wall5" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 722.44, -360.48 )
+rotation = -0.785398
+scale = Vector2( 10.722, 12.521 )
+
+[node name="Wall4" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( -463.857, -427.645 )
+rotation = 0.785398
+scale = Vector2( 9.165, 15.467 )
+
+[node name="Wall7" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 1952.17, -536.606 )
+scale = Vector2( 16.116, 11 )
+
+[node name="Wall9" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( -607.731, 1895.07 )
+scale = Vector2( 14.71, 15.34 )
+
+[node name="Wall18" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 572.269, 2371.07 )
+scale = Vector2( 20.961, 15.34 )
+
+[node name="Bumpers" type="Node2D" parent="."]
+
+[node name="Bumper" parent="Bumpers" instance=ExtResource( 6 )]
+position = Vector2( 681.35, 839.682 )
+rotation = 1.5708
+
+[node name="Bumper3" parent="Bumpers" instance=ExtResource( 6 )]
+position = Vector2( 1204.39, 1174.36 )
+rotation = 1.5708
+
+[node name="Bumper5" parent="Bumpers" instance=ExtResource( 6 )]
+position = Vector2( 660.388, 1574.36 )
+rotation = 1.5708
+
+[node name="Bumper4" parent="Bumpers" instance=ExtResource( 6 )]
+position = Vector2( 1195.98, 653.003 )
+rotation = 1.5708
+
+[node name="Bumper2" parent="Bumpers" instance=ExtResource( 6 )]
+position = Vector2( 1571.02, 446.142 )
+rotation = -6.28319
+
+[node name="Bumper6" parent="Bumpers" instance=ExtResource( 6 )]
+position = Vector2( 155.019, 1278.14 )
+rotation = -6.28319
+
+[node name="Bumper8" parent="Bumpers" instance=ExtResource( 6 )]
+position = Vector2( 1563.02, 1482.14 )
+rotation = -6.28319
+
+[node name="Bumper7" parent="Bumpers" instance=ExtResource( 6 )]
+position = Vector2( 155.019, 1498.14 )
+rotation = -6.28319
+
+[node name="Floors" type="Node2D" parent="."]
+z_index = -5
+z_as_relative = false
+
+[node name="CoralFloor7" parent="Floors" instance=ExtResource( 8 )]
+position = Vector2( 862.983, -1859.96 )
+rotation = -2.93595
+scale = Vector2( 3, 1 )
+
+[node name="SandstoneFloor4" parent="Floors" instance=ExtResource( 9 )]
+position = Vector2( 709.739, -1.12851 )
+rotation = 0.785398
+scale = Vector2( 3, 6 )
+
+[node name="SandstoneFloor1" parent="Floors" instance=ExtResource( 9 )]
+position = Vector2( -70.9409, -40.7299 )
+rotation = 0.785398
+scale = Vector2( 16.561, 5.26 )
+
+[node name="CoralFloor2" parent="Floors" instance=ExtResource( 8 )]
+position = Vector2( 2853.28, -1280.41 )
+rotation = 1.40809
+scale = Vector2( 3, 2 )
+
+[node name="CoralFloor3" parent="Floors" instance=ExtResource( 8 )]
+position = Vector2( 1867.62, -2344.84 )
+rotation = 0.448366
+scale = Vector2( 17, 4 )
+
+[node name="CoralFloor4" parent="Floors" instance=ExtResource( 8 )]
+position = Vector2( 1137.18, -2002.31 )
+rotation = 2.37228
+scale = Vector2( 8, 4 )
+
+[node name="CoralFloor5" parent="Floors" instance=ExtResource( 8 )]
+position = Vector2( 325.528, -2040.67 )
+rotation = 3.24656
+scale = Vector2( 10, 4 )
+
+[node name="CoralFloor6" parent="Floors" instance=ExtResource( 8 )]
+position = Vector2( 750.963, -1420.56 )
+rotation = 2.92396
+scale = Vector2( 13, 3 )
+
+[node name="CoralFloor1" parent="Floors" instance=ExtResource( 8 )]
+position = Vector2( 2216.8, -1467.69 )
+rotation = -0.607797
+scale = Vector2( 9, 9 )
+
+[node name="SandstoneFloor5" parent="Floors" instance=ExtResource( 9 )]
+position = Vector2( 1087.58, 926.168 )
+scale = Vector2( 15.463, 19.461 )
+
+[node name="Text" type="Node2D" parent="."]
+z_index = 4096
+z_as_relative = false
